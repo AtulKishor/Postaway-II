@@ -1,0 +1,31 @@
+{
+  "name": "postaway-ii",
+  "version": "1.0.0",
+  "description": "Social Media Backend REST-API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AtulKishor/Postaway-II"
+  },
+  "author": "Atul Kishor",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
+    "otp-gen-val": "^1.0.7",
+    "otp-generator": "^4.0.1",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.13.0"
+  }
+}

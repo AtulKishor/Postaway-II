@@ -1,0 +1,956 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "Social Media Platform",
+    "title": "Postaway-II"
+  },
+    "servers": [
+      {
+        "url": "http://localhost:8000",
+        "description": "Local server"
+      }
+    ],
+    "paths": {
+      "/api/users/signup": {
+        "post": {
+          "summary": "Register a new user account",
+          "tags": ["Users"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSignup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User registered successfully"
+            }
+          }
+        }
+      },
+      "/api/users/signin": {
+        "post": {
+          "summary": "Log in as a user",
+          "tags": ["Users"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSignin"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User signed in successfully"
+            }
+          }
+        }
+      },
+      "/api/users/logout": {
+        "get": {
+          "summary": "Log out the currently logged-in user",
+          "tags": ["Users"],
+          "responses": {
+            "200": {
+              "description": "User logged out successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/users/logout-all-devices": {
+        "get": {
+          "summary": "Log out the user from all devices",
+          "tags": ["Users"],
+          "responses": {
+            "200": {
+              "description": "User logged out from all devices successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/users/get-details/{userId}": {
+        "get": {
+          "summary": "Retrieve user information",
+          "tags": ["Users"],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User details retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/users/get-all-details": {
+        "get": {
+          "summary": "Retrieve information for all users",
+          "tags": ["Users"],
+          "responses": {
+            "200": {
+              "description": "All users details retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/users/update-details/{userId}": {
+        "put": {
+          "summary": "Update user details",
+          "tags": ["Users"],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User details updated successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/users/avatar-upload": {
+        "post": {
+          "summary": "Upload user avatar",
+          "tags": ["Users"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "avatar": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Avatar uploaded successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/posts/all": {
+        "get": {
+          "summary": "Retrieve all posts",
+          "tags": ["Posts"],
+          "responses": {
+            "200": {
+              "description": "All posts retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/posts/{postId}": {
+        "get": {
+          "summary": "Retrieve a specific post by ID",
+          "tags": ["Posts"],
+          "parameters": [
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        },
+        "delete": {
+          "summary": "Delete a specific post",
+          "tags": ["Posts"],
+          "parameters": [
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post deleted successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        },
+        "put": {
+          "summary": "Update a specific post",
+          "tags": ["Posts"],
+          "parameters": [
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "imageUrl": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Post updated successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/posts": {
+        "get": {
+          "summary": "Retrieve all posts for a specific user",
+          "tags": ["Posts"],
+          "responses": {
+            "200": {
+              "description": "User's posts retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        },
+        "post": {
+          "summary": "Create a new post",
+          "tags": ["Posts"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "imageUrl": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Post created successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/comments/{postId}": {
+        "get": {
+          "summary": "Get comments for a specific post",
+          "tags": ["Comments"],
+          "parameters": [
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Comments retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        },
+        "post": {
+          "summary": "Add a comment to a specific post",
+          "tags": ["Comments"],
+          "parameters": [
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Comment added successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/comments/{commentId}": {
+        "delete": {
+          "summary": "Delete a specific comment",
+          "tags": ["Comments"],
+          "parameters": [
+            {
+              "name": "commentId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Comment deleted successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        },
+        "put": {
+          "summary": "Update a specific comment",
+          "tags": ["Comments"],
+          "parameters": [
+            {
+              "name": "commentId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Comment updated successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/likes/{id}": {
+        "get": {
+          "summary": "Get likes for a specific post or comment",
+          "tags": ["Likes"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Likes retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/likes/toggle/{id}": {
+        "get": {
+          "summary": "Toggle like on a post or comment",
+          "tags": ["Likes"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Like toggled successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/friends/get-friends/{userId}": {
+        "get": {
+          "summary": "Get a user's friends",
+          "tags": ["Friends"],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Friends retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/friends/get-pending-requests": {
+        "get": {
+          "summary": "Get pending friend requests",
+          "tags": ["Friends"],
+          "responses": {
+            "200": {
+              "description": "Pending requests retrieved successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/friends/toggle-friendship/{friendId}": {
+        "get": {
+          "summary": "Toggle friendship with another user",
+          "tags": ["Friends"],
+          "parameters": [
+            {
+              "name": "friendId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Friendship toggled successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/friends/response-to-request/{friendId}": {
+        "get": {
+          "summary": "Accept or reject a friend request",
+          "tags": ["Friends"],
+          "parameters": [
+            {
+              "name": "friendId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Friend request response recorded successfully"
+            }
+          },
+          "security": [
+            {
+              "jwtAuth": []
+            }
+          ]
+        }
+      },
+      "/api/otp/send": {
+        "post": {
+          "summary": "Send an OTP for password reset",
+          "tags": ["OTP"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OTP sent successfully"
+            }
+          }
+        }
+      },
+      "/api/otp/verify": {
+        "post": {
+          "summary": "Verify an OTP",
+          "tags": ["OTP"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpVerification"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OTP verified successfully"
+            }
+          }
+        }
+      },
+      "/api/otp/reset-password": {
+        "put": {
+          "summary": "Reset the user's password",
+          "tags": ["OTP"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordReset"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Password reset successfully"
+            }
+          }
+        }
+      },
+      "/": {
+        "get": {
+          "summary": "Welcome to the Social Media REST-API's",
+          "tags": ["General"],
+          "responses": {
+            "200": {
+              "description": "Welcome message"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "jwtAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "schemas": {
+        "UserSignup": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "type": "string",
+              "format": "password"
+            }
+          },
+          "required": ["username", "email", "password"]
+        },
+        "UserSignin": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "type": "string",
+              "format": "password"
+            }
+          },
+          "required": ["email", "password"]
+        },
+        "UserUpdate": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "type": "string",
+              "format": "password"
+            }
+          }
+        },
+        "Comment": {
+          "type": "object",
+          "properties": {
+            "user": {
+              "type": "string",
+              "description": "User ID",
+              "example": "60d21b4667d0d8992e610c85"
+            },
+            "post": {
+              "type": "string",
+              "description": "Post ID",
+              "example": "60d21b4967d0d8992e610c88"
+            },
+            "content": {
+              "type": "string",
+              "description": "Content of the comment",
+              "example": "This is a comment"
+            },
+            "likes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "User ID",
+                "example": "60d21b4667d0d8992e610c85"
+              }
+            }
+          },
+          "required": ["user", "post", "content"]
+        },
+        "Friend": {
+          "type": "object",
+          "properties": {
+            "user": {
+              "type": "string",
+              "description": "User ID",
+              "example": "60d21b4667d0d8992e610c85"
+            },
+            "friend": {
+              "type": "string",
+              "description": "Friend's User ID",
+              "example": "60d21b4767d0d8992e610c87"
+            },
+            "status": {
+              "type": "string",
+              "enum": ["pending", "accepted", "rejected"],
+              "default": "pending",
+              "description": "Friend request status"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": ["user", "friend", "status"]
+        },
+        "Like": {
+          "type": "object",
+          "properties": {
+            "user": {
+              "type": "string",
+              "description": "User ID",
+              "example": "60d21b4667d0d8992e610c85"
+            },
+            "likeable": {
+              "type": "string",
+              "description": "ID of the liked object",
+              "example": "60d21b4967d0d8992e610c88"
+            },
+            "on_model": {
+              "type": "string",
+              "enum": ["Post", "Comment"],
+              "description": "Type of the liked object"
+            }
+          },
+          "required": ["user", "likeable", "on_model"]
+        },
+        "OtpRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email"
+            }
+          },
+          "required": ["email"]
+        },
+        "OtpVerification": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "otp": {
+              "type": "string"
+            }
+          },
+          "required": ["email", "otp"]
+        },
+        "PasswordReset": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "newPassword": {
+              "type": "string",
+              "format": "password"
+            }
+          },
+          "required": ["email", "newPassword"]
+        },
+        "Post": {
+          "type": "object",
+          "properties": {
+            "user": {
+              "type": "string",
+              "description": "User ID",
+              "example": "60d21b4667d0d8992e610c85"
+            },
+            "imageUrl": {
+              "type": "string",
+              "description": "URL of the image",
+              "example": "http://example.com/image.jpg"
+            },
+            "caption": {
+              "type": "string",
+              "description": "Caption of the post",
+              "example": "This is a caption"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "comments": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Comment ID",
+                "example": "60d21b4b67d0d8992e610c89"
+              }
+            },
+            "likes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Like ID",
+                "example": "60d21b4c67d0d8992e610c8a"
+              }
+            }
+          },
+          "required": ["user", "caption"]
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "example": "John Doe"
+            },
+            "avatar": {
+              "type": "string",
+              "description": "URL of the user's avatar",
+              "example": "http://example.com/avatar.jpg",
+              "default": ""
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "User's email address",
+              "example": "user@example.com"
+            },
+            "password": {
+              "type": "string",
+              "format": "password",
+              "description": "User's password"
+            },
+            "gender": {
+              "type": "string",
+              "description": "User's gender",
+              "example": "male"
+            },
+            "posts": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Post ID",
+                "example": "60d21b4967d0d8992e610c88"
+              }
+            },
+            "token": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Authentication token"
+              }
+            }
+          },
+          "required": ["name", "email", "password", "gender"]
+        }
+      }
+    }
+}
