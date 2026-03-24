@@ -1,5 +1,3 @@
-//Important Please add your database link in .env file and also your email and app password for sending emailusing nodemailer.
-
 # Social Media Backend REST-API
 
 This project is designed to create a robust social media backend REST-API using Node.js, ExpressJS, and MongoDB. The API will provide various functionalities including user management, posts, comments, likes, friend requests, and enhanced security features like OTP-based password reset.
@@ -78,3 +76,6 @@ This project is designed to create a robust social media backend REST-API using 
 - `/api/otp/send`: Send an OTP for password reset.
 - `/api/otp/verify`: Verify an OTP.
 - `/api/otp/reset-password`: Reset the user's password.
+
+### Note
+- *Important*: Please add your database link in .env file and also your email and app password for sending email using nodemailer.
