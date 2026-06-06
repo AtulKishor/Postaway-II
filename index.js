@@ -4,7 +4,7 @@ import './env.js'
 // Modules Imported
 import express from 'express';
 import swagger from 'swagger-ui-express';
-import apiDocs from './swagger.json' assert {type: 'json'};
+import apiDocs from './swagger.json' with {type: 'json'};
 
 // Routers Imported
 import userRouter from './src/features/user/Routes/user.routes.js';
