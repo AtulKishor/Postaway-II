@@ -32,7 +32,7 @@ export default class UserController{
             const newUser = await this.userRepository.signUp(user);
             if(!newUser)
             {
-                throw new ApplicationError("New user cannot added something went wrong.", 400);
+                throw new ApplicationError("New user cannot be added, something went wrong.", 400);
             }
             // Sending response.
             return res.status(201).json({
@@ -76,6 +76,9 @@ export default class UserController{
                     process.env.JWT_SECRET_KEY,
                     { expiresIn: '1h' }
                 );
+                
+                // add token for current user and device pair
+                await user.updateOne({$push: { token }});
     
                 // Send token in response upon successful login.
                 return res.status(200).json({
@@ -99,7 +102,7 @@ export default class UserController{
         // Log out the currently logged-in user.
         async Logout(req, res, next) {
             try {
-                const token = req.headers.authorization.replace("Bearer", "");
+                const token = req.headers.authorization.split(" ")[1];
                 const userId = req.userID;
     
                 const result = await this.userRepository.logout(userId, token);
