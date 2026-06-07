@@ -701,7 +701,7 @@
         "UserSignup": {
           "type": "object",
           "properties": {
-            "username": {
+            "name": {
               "type": "string"
             },
             "email": {
@@ -711,9 +711,14 @@
             "password": {
               "type": "string",
               "format": "password"
+            },
+            "gender": {
+              "type": "string",
+              "description": "User's gender",
+              "example": "male"
             }
           },
-          "required": ["username", "email", "password"]
+          "required": ["name", "email", "password", "gender"]
         },
         "UserSignin": {
           "type": "object",
@@ -732,16 +737,13 @@
         "UserUpdate": {
           "type": "object",
           "properties": {
-            "username": {
+            "name": {
               "type": "string"
             },
-            "email": {
+            "gender": {
               "type": "string",
-              "format": "email"
-            },
-            "password": {
-              "type": "string",
-              "format": "password"
+              "description": "User's gender",
+              "example": "male"
             }
           }
         },
