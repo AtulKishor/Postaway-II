@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const jwtAuth = (req,res,next)=>{
     // 1. Read  the token
-    const token = req.headers['authorization'];
+    const token = req.headers.authorization.split(" ")[1];
 
     // 2. If no token return error
     if(!token)
