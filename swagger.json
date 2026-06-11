@@ -284,6 +284,9 @@
                     "imageUrl": {
                       "type": "string",
                       "format": "binary"
+                    },
+                    "caption": {
+                      "type": "string"
                     }
                   }
                 }
@@ -330,8 +333,12 @@
                     "imageUrl": {
                       "type": "string",
                       "format": "binary"
+                    },
+                    "caption": {
+                      "type": "string"
                     }
-                  }
+                  },
+                  "required": ["imageUrl", "caption"]
                 }
               }
             }

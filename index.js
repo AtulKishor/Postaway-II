@@ -49,7 +49,7 @@ app.use((req,res)=>{
 });
 
 // Server is listening here
-app.listen('8000', ()=>{
-    console.log("Server is listening on: localhost:8000");
+app.listen(process.env.PORT, ()=>{
+    console.log(`Server is listening on: ${process.env.BASE_URL}`);
     connectUsingMongoose();
 });
