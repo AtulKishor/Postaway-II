@@ -1,0 +1,62 @@
+<testsuites id="" name="" tests="21" failures="0" skipped="0" errors="0" time="7.82855">
+<testsuite name="api\post\create-post.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.67" errors="0">
+<testcase name="create post" classname="api\post\create-post.spec.ts" time="0.67">
+</testcase>
+</testsuite>
+<testsuite name="api\user\get-user-details.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="chromium" tests="2" failures="0" skipped="0" time="1.324" errors="0">
+<testcase name="User GET APIs › get logged-in user details" classname="api\user\get-user-details.spec.ts" time="0.652">
+</testcase>
+<testcase name="User GET APIs › get all users details" classname="api\user\get-user-details.spec.ts" time="0.672">
+</testcase>
+</testsuite>
+<testsuite name="api\user\user.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.507" errors="0">
+<testcase name="User mutation APIs › log out the currently logged-in user" classname="api\user\user.spec.ts" time="0.672">
+</testcase>
+<testcase name="User mutation APIs › log out the user from all devices" classname="api\user\user.spec.ts" time="0.608">
+</testcase>
+<testcase name="User mutation APIs › update user details" classname="api\user\user.spec.ts" time="0.608">
+</testcase>
+<testcase name="User mutation APIs › upload user avatar" classname="api\user\user.spec.ts" time="0.619">
+</testcase>
+</testsuite>
+<testsuite name="api\post\create-post.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="firefox" tests="1" failures="0" skipped="0" time="0.758" errors="0">
+<testcase name="create post" classname="api\post\create-post.spec.ts" time="0.758">
+</testcase>
+</testsuite>
+<testsuite name="api\user\get-user-details.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="firefox" tests="2" failures="0" skipped="0" time="1.362" errors="0">
+<testcase name="User GET APIs › get logged-in user details" classname="api\user\get-user-details.spec.ts" time="0.695">
+</testcase>
+<testcase name="User GET APIs › get all users details" classname="api\user\get-user-details.spec.ts" time="0.667">
+</testcase>
+</testsuite>
+<testsuite name="api\user\user.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="firefox" tests="4" failures="0" skipped="0" time="2.485" errors="0">
+<testcase name="User mutation APIs › log out the currently logged-in user" classname="api\user\user.spec.ts" time="0.651">
+</testcase>
+<testcase name="User mutation APIs › log out the user from all devices" classname="api\user\user.spec.ts" time="0.613">
+</testcase>
+<testcase name="User mutation APIs › update user details" classname="api\user\user.spec.ts" time="0.599">
+</testcase>
+<testcase name="User mutation APIs › upload user avatar" classname="api\user\user.spec.ts" time="0.622">
+</testcase>
+</testsuite>
+<testsuite name="api\post\create-post.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="webkit" tests="1" failures="0" skipped="0" time="0.719" errors="0">
+<testcase name="create post" classname="api\post\create-post.spec.ts" time="0.719">
+</testcase>
+</testsuite>
+<testsuite name="api\user\get-user-details.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="webkit" tests="2" failures="0" skipped="0" time="1.37" errors="0">
+<testcase name="User GET APIs › get logged-in user details" classname="api\user\get-user-details.spec.ts" time="0.687">
+</testcase>
+<testcase name="User GET APIs › get all users details" classname="api\user\get-user-details.spec.ts" time="0.683">
+</testcase>
+</testsuite>
+<testsuite name="api\user\user.spec.ts" timestamp="2026-06-11T12:17:26.382Z" hostname="webkit" tests="4" failures="0" skipped="0" time="2.482" errors="0">
+<testcase name="User mutation APIs › log out the currently logged-in user" classname="api\user\user.spec.ts" time="0.679">
+</testcase>
+<testcase name="User mutation APIs › log out the user from all devices" classname="api\user\user.spec.ts" time="0.614">
+</testcase>
+<testcase name="User mutation APIs › update user details" classname="api\user\user.spec.ts" time="0.617">
+</testcase>
+<testcase name="User mutation APIs › upload user avatar" classname="api\user\user.spec.ts" time="0.572">
+</testcase>
+</testsuite>
+</testsuites>
