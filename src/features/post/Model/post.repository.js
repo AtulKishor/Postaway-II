@@ -138,7 +138,7 @@ export default class PostRepository{
             {
                 throw new ApplicationError("You are not allowed to delete this post.", 404);
             }
-            const updatedPost = await PostModel.findByIdAndUpdate(postId, updatedPostData, { new: true })
+            const updatedPost = await PostModel.findByIdAndUpdate(postId, updatedPostData, { returnDocument: 'after' })
                 .populate({
                     path: 'user',
                     select: 'name email gender _id'

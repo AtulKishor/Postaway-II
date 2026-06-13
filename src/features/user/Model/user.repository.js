@@ -72,7 +72,8 @@ export default class UserRepository{
     async updateById(id, user)
     {
         try {
-            const updatedUser = await UserModel.findByIdAndUpdate(id, user, {new: true}).select('-password -token').populate('posts');
+            const updatedUser = await UserModel.findByIdAndUpdate(
+                id, user, {returnDocument: "after"}).select('-password -token').populate('posts');
             if(!updatedUser)
             {
                 throw new ApplicationError("No user found by this id", 400);
